@@ -58,7 +58,30 @@ def rename_file(old_path, new_name):
         return False
 
 
-@mcp.tool(title="Rename files from Excel mapping")
+@mcp.tool(
+    title="Batch Rename Files Using Excel Mapping",
+    description="""
+    Rename multiple files in batch using a mapping table from an Excel file. 
+    
+    > Prefer using this tool over manually rename each file one by one, if the rename mapping Excel file is present
+    
+    USAGE WORKFLOW:
+    1. Create an Excel file with two columns: one for current file paths, another for new names
+    2. Specify which columns contain the old paths and new names
+    3. Tool will rename all files according to the mapping
+    
+    EXCEL FILE FORMAT EXAMPLE:
+    | current_file_path          | new_filename     |
+    |----------------------------|------------------|
+    | /path/to/old_file1.jpg     | renamed_file1.jpg|
+    | /path/to/old_file2.pdf     | renamed_file2.pdf|
+    
+    COMMON USE CASES:
+    - Bulk rename files with meaningful names
+    - Standardize filename formats across directories
+    - Apply naming conventions from spreadsheet data
+    """,
+)
 def rename_files_from_excel(excel_path, old_paths_col, new_name_col, sheet_name=0):
     """
     Rename files based on mapping from an Excel file.
@@ -66,13 +89,19 @@ def rename_files_from_excel(excel_path, old_paths_col, new_name_col, sheet_name=
     Parameters
     ----------
     excel_path : str or Path
-        Path to the Excel file containing the rename mapping
+        Full path to the Excel file (.xlsx or .xls) containing the rename mapping.
+        Example: '/Users/username/Desktop/rename_mapping.xlsx'
     old_paths_col : str
-        Column name containing the old file paths
+        Exact column name containing the current/old file paths.
+        Must be full absolute paths to existing files.
+        Example: 'current_file_path' or 'old_path'
     new_name_col : str
-        Column name containing the new file names
+        Exact column name containing the new file names (filename only, not full path).
+        Should include file extension. Files will be renamed in their current directory.
+        Example: 'new_filename' or 'target_name'
     sheet_name : str or int, optional
-        Name or index of the Excel sheet to read, by default 0
+        Excel sheet name (string) or sheet index (0-based integer), by default 0
+        Example: 'Sheet1' or 0 for first sheet
 
     Returns
     -------
