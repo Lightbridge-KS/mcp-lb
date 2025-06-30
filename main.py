@@ -6,7 +6,7 @@ from mcp.server.fastmcp import FastMCP
 
 
 # Create an MCP server
-mcp = FastMCP("lightbridge-ks")
+mcp = FastMCP("lightbridge-ks", dependencies=["pandas"])
 
 
 def rename_file(old_path, new_name):
