@@ -1,8 +1,8 @@
 # server.py
 from pathlib import Path
 import logging
-from mcp.server.fastmcp import FastMCP
 import pandas as pd
+from mcp.server.fastmcp import FastMCP
 
 
 # Create an MCP server

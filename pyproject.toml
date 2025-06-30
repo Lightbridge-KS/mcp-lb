@@ -6,10 +6,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "ipykernel>=6.29.5",
-    "lbpy",
     "mcp[cli]>=1.10.1",
     "pandas>=2.3.0",
 ]
 
-[tool.uv.sources]
-lbpy = { git = "https://github.com/Lightbridge-KS/lbpy" }
+[project.scripts]
+mcp-lb = "main:mcp"
