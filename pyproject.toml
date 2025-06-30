@@ -9,6 +9,3 @@ dependencies = [
     "mcp[cli]>=1.10.1",
     "pandas>=2.3.0",
 ]
-
-[project.scripts]
-mcp-lb = "main:mcp"
